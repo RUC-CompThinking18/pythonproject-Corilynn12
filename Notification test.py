@@ -3,9 +3,16 @@
 #I also need to import beautiful soup and request that it extracts the data needed from the website
 import requests
 from bs4 import BeautifulSoup
+import csv
 URL = "https://www.goodreads.com/author/quotes/8075577.Rupi_Kaur"
 r = requests.get(URL)
 soup = BeautifulSoup(r.content, 'html5lib')
 print(soup.prettify())
 quotes=[]
 table = soup.find('div', attrs = {'class' : 'quote'})
+file_name = 'Rupi_Kaur_quotes.csv'
+with open(file_name, 'wb') as f:
+    w = csv.DictWriter(f,['url' , 'author'])
+    w.writeheader()
+    for quote in quotes:
+        w.writerow(quote)
