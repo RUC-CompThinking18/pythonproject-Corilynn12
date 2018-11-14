@@ -1,14 +1,10 @@
-import notify2
-import dbus
-#I need to define a function to send notifications to a user's phone from the app
-#notify2 was installed with pip and imported into Atom
-#Once notify2 was installed, I have to use an init statement to make sure the function
-#finds the notifications within the data_url I provide later
-#I set notify equal to the notification from the data_url, the actual content from the data_url
-#and the quote that will appear on the phone when the notification is sent
-#Finally I printed the Nofication
-def send(content):
-    notify2.init('https://www.brainyquote.com/topics/inspirational')
-    notify = notify2.Notification('https://www.brainyquote.com/topics/inspirational', Inspirational, 'Today I chose life.')
-    notify.show()
-    print(Notification)
+#I have to scrape the quotes from a website in order to print them to the terminal. I then have to find a way to send that specific
+#quote as a notification to the terminal. I have to beautifulsoup, requests,and html5lib in order to extract the quotes I need from the website.
+#I also need to import beautiful soup and request that it extracts the data needed from the website
+import requests
+from bs4 import BeautifulSoup
+URL = "https://www.goodreads.com/author/quotes/8075577.Rupi_Kaur"
+r = requests.get(URL)
+soup = BeautifulSoup(r.content, 'html5lib')
+print(soup.prettify())
+quotes=[]
