@@ -1,11 +1,25 @@
-import requests
 from bs4 import BeautifulSoup
+import urllib2
 import pynotify
-from time import sleep
-message = "Stay strong, it takes grace to remain kind in cruel situations."
-def sendmessage(title, message):
-    pynotify.init('https://quotecatalog.com/quote/rupi-kaur-stay-strong-thr-baVPe57/')
-    notice = pynotify.Notification('title' , 'message')
+#I imported beautifulsoup, urllib2 and pynotify in order to get the messgae to print to the terminal
+#I defined the function to send the message with the message followed by the title so it looks like a notification one would get on their phone.
+#To pull the quote out that I wanted, I used beautiful soup to extract the quote
+#I was able to read the html file and pull the quote from the <div> class it was in
+#I wrote out the author and specific message from the website so that it can print to the terminal as notification
+def sendmessage(message, title):
+    pynotify.init('Quotecatalog')
+    notice = pynotify.Notification(message, title)
     notice.show()
     return Notification
-print(message)
+URL = urllib2.urlopen('https://quotecatalog.com/quote/rupi-kaur-stay-strong-thr-baVPe57/').read()
+soup = BeautifulSoup(URL , 'lxml')
+author = 'Rupi Kaur'
+title = author
+message = 'stay strong through your pain, grow flowers from it!'
+#defined the title and message from the html file.
+for words in soup.find_all('quotecatalog', 'class'):
+    message.append(message.text.encode('content'))
+    print(message)
+#used a forloop to find the quote in the html file but it didn't do anything.
+print(message, title)
+#output quote followed by author's name!
