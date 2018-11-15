@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import urllib2
+import requests
 import pynotify
 #I imported beautifulsoup, urllib2 and pynotify in order to get the messgae to print to the terminal
 #I defined the function to send the message with the message followed by the title so it looks like a notification one would get on their phone.
@@ -11,8 +11,11 @@ def sendmessage(message, title):
     notice = pynotify.Notification(message, title)
     notice.show()
     return Notification
-URL = urllib2.urlopen('https://quotecatalog.com/quote/rupi-kaur-stay-strong-thr-baVPe57/').read()
-soup = BeautifulSoup(URL , 'lxml')
+URL = 'https://quotecatalog.com/quote/rupi-kaur-stay-strong-thr-baVPe57/'
+r = requests.get(URL)
+soup = BeautifulSoup(URL , 'html5lib')
+print(soup.prettify())
+
 author = 'Rupi Kaur'
 title = author
 message = 'stay strong through your pain, grow flowers from it!'
