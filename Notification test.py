@@ -16,7 +16,7 @@ soup = BeautifulSoup(URL , 'lxml')
 author = 'Rupi Kaur'
 title = author
 message = 'stay strong through your pain, grow flowers from it!'
-#defined the title and message from the html file.
+#defined the title and message from the website.
 for words in soup.find_all('quotecatalog', 'class'):
     message.append(message.text.encode('content'))
     print(message)
